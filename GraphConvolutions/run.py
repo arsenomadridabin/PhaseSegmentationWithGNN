@@ -449,7 +449,7 @@ def run_evaluation_on_new_data_v2(model_path, test_snapshots):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = load_model(GNN, in_channels=10, path=model_path).to(device)
     for i, snap in enumerate(test_snapshots):
-        pred, positions, true_labels = infer(model, snap, device)
+        pred, positions, true_labels = infer(model, snap, device, i)
 
         # Apply post-hoc 3-class labeling
         pred_labels_with_boundary = add_boundary_labels(pred, positions)
